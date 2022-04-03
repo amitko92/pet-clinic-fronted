@@ -1,0 +1,16 @@
+.alert{
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 1rem;
+    border-radius: 10px;
+    border: 0.3rem solid black;
+    padding: 0.5rem;
+}
+
+.errorAlert{
+
+    color: red;
+    border: 0.2rem solid red;
+    background-color: rgba(255, 0, 0, 0.137);
+}

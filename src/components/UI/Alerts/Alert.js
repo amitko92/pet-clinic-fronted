@@ -13,7 +13,7 @@ const Alert = (props) =>{
 
     return (
         <div className={calsses}>
-            {props.alertMessage}
+            {props.message}
         </div>
     );
 }

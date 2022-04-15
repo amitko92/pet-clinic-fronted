@@ -2,13 +2,15 @@ import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { useNavigate  } from "react-router-dom";
 import { LoginContext } from '../../LoginContext';
+import { CLIENT_FORM_ACTION } from '../../reducers/client/ClientReducer';
 import { PageStateContext, PAGE_STATE_ACTION } from '../../contexts/PageStateContext';
 
-export const useGetClient = (clientId) => {
+export const useGetClient = (clientId, formDispatch) => {
     const {setPageState} = useContext(PageStateContext);
 
-    const handleErrorFetch = (error) => {
-        console.log('error ' + error)
+    const handleError = (error) => {
+        console.log('error ' + error);
+        
         setPageState({
             type:PAGE_STATE_ACTION.SET_ERROR_MESSAGE,
             payload:{
@@ -19,11 +21,26 @@ export const useGetClient = (clientId) => {
         console.log(error.message);
     }
 
-    const handleSuccessFetch = (response) => {
+    const handleSuccess = (response) => {
         const data = response.data;
-        console.log('response ' + JSON.stringify(response));
-
+        
         if(data.status === 1){
+            console.log('response ' + JSON.stringify(data));
+            const owner = data.owner;
+
+            formDispatch({
+                type:CLIENT_FORM_ACTION.UPDATE_ALL_FIELD,
+                payload:{
+                    fName: owner.fName,
+                    lName: owner.lName,
+                    dateOfBirth: owner.dateOfBirth,
+                    registrationDate: owner.registrationDate,
+                    city: owner.city,
+                    street: owner.street,
+                    house: owner.house,
+                    apartment: owner.apartment
+                }
+            })
 
             setPageState({
                 type:PAGE_STATE_ACTION.SET_SUCCESS_MESSAGE,
@@ -33,7 +50,7 @@ export const useGetClient = (clientId) => {
             });
         }else{
 
-            let message = 'failed to add client';
+            let message = `failed to add found client with id ${clientId}`;
 
             if(data.message !== undefined){
                 message = data.message;
@@ -50,7 +67,21 @@ export const useGetClient = (clientId) => {
     }
 
     const getClient = () => {
-        const url = '/owner' 
+        const url = '/owner';
+ 
+        let formData = new FormData(); // Currently empty
+        formData.append('ownerId', clientId);
+
+        axios.post(url, formData)
+        .then(response => {
+            
+            handleSuccess(response);
+        })
+        .catch(error => {
+
+            handleError(error);
+        })
+        .finally();
     }
 
     return getClient;

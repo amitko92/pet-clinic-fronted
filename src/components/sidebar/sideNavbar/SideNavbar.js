@@ -9,7 +9,7 @@ function SideNavbar() {
     let clientOption = (
         <div>
             <SideNavbarInnerItem 
-                to={'/viewClient/-1'} 
+                to={`/viewClient/${-1}`} 
                 title={'add new client'} 
                 activeTab={activeTab} 
                 setActiveTab={setActiveTab}/>

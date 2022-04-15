@@ -9,10 +9,6 @@ const Page = (props) => {
     
     return (
     <div className={Style.page}>
-        {pageState.hasMessage && 
-        <Alert 
-            status={pageState.messageStatus} 
-            alertMessage={pageState.message}/>}
         {props.children}
     </div>
     );

@@ -18,7 +18,7 @@ const ViewClientPage = () => {
     
     useEffect(()=>{
 
-        if(clientId !== '-1'){
+        if(clientId != '-1'){
             console.log('typeof clientId ' + typeof clientId);
             getClient();
         }

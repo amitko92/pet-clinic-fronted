@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import Style from './loginForm.module.css';
-import TestIput from '../UI/form/TestInput';
+import TextIput from '../UI/form/TextInput';
 import NumberInput from '../UI/form/NumberInput';
 import useLogin from '../../hooks/login/useLogin';
 import Alert from '../UI/Alerts/Alert';
@@ -24,9 +24,9 @@ function LoginForm(props) {
                 {pageState.hasMessage && <Alert 
                                             status={pageState.messageStatus} 
                                             alertMessage={pageState.message} />}
-                <TestIput name={'username'} id={'username'} 
+                <TextIput name={'username'} id={'username'} 
                 tagName={'User Name'} value={userName} setValue={setUserName}/>
-                <TestIput name={'password'} id={'password'} 
+                <TextIput name={'password'} id={'password'} 
                 tagName={'Password'} value={password} setValue={setPassword}/>
                 <NumberInput name={'pin'} id={'pin'} 
                 tagName={'Project Number'} value={pin} setValue={setPin}/>

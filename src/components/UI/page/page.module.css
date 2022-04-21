@@ -1,6 +1,6 @@
 .page{
     display: flex;
-    flex-wrap: wrap;
-    min-width: 80%;
+    
+    flex-direction: column;
     padding: 1rem;
 }

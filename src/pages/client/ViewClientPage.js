@@ -4,6 +4,8 @@ import {useClientData} from '../../hooks/client/useClientData';
 import Alert from '../../components/UI/Alerts/Alert';
 import { PageStateContext, PAGE_STATE_ACTION } from '../../contexts/PageStateContext';
 import { useGetClient } from '../../hooks/client/useGetClient';
+import Style from './client.module.css';
+import AddClientForm from '../../components/client/AddClientForm';
 
 const ViewClientPage = () => {
 
@@ -12,27 +14,32 @@ const ViewClientPage = () => {
     const {pageState} = useContext(PageStateContext);
     const {formState, formDispatch} = useClientData(clientId);
     const getClient = useGetClient(clientId, formDispatch);
-
+    let alert = '';
+    
     useEffect(()=>{
 
-        if(clientId !== -1){
+        if(clientId !== '-1'){
             console.log('typeof clientId ' + typeof clientId);
             getClient();
         }
     }, []);
 
-    console.log('pageState.hasMessage ' + pageState.hasMessage);
+    if(pageState.hasMessage){
+        alert = (
+            <Alert 
+            status={pageState.messageStatus} 
+            message={pageState.message} />
+        );
+    }
     
     return (
-        <div>
-            {pageState.hasMessage && 
-            <Alert 
-                status={pageState.messageStatus} 
-                message={pageState.message} />}
-            <h1>user id is {formState.id}</h1>
+        <>
+            {alert}
+            <h1>Client Page</h1>
+            <AddClientForm />
             <h3>{JSON.stringify(formState)}</h3>
-            <button onClick={getClient}>update</button>
-        </div>);
+        </>
+    );
 }
  
 export default ViewClientPage;

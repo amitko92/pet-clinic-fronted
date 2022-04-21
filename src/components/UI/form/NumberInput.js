@@ -9,7 +9,7 @@ function NumberInput(props){
 
     return (
         <div>
-            <label>{props.tagName}</label>
+            <label htmlFor={props.id}>{props.tagName}</label>
             <input className={Style.input} 
                 type='number' 
                 value={props.value} 

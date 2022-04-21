@@ -9,7 +9,7 @@ function TextInput(props) {
     
     return (
         <div>
-            <label>{props.tagName}</label>
+            <label htmlFor={props.id}>{props.tagName}</label>
             <input className={Style.input} 
                 type='text' 
                 value={props.value}

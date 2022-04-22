@@ -1,6 +1,6 @@
 .input{
 
-    font-size: 1em;
+    size: 3rem;
 }
 
 .redStar{
@@ -17,6 +17,10 @@
 
 .input{
     
+}
+
+.inputError{
+
 }
 
 .errorDiv{

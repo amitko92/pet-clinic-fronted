@@ -36,7 +36,7 @@ const ViewClientPage = () => {
         <>
             {alert}
             <h1>Client Page</h1>
-            <AddClientForm />
+            <AddClientForm formState={formState} formDispatch={formDispatch}/>
             <h3>{JSON.stringify(formState)}</h3>
         </>
     );

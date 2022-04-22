@@ -9,7 +9,7 @@ function InputGroup(props){
     let showError = !isFocus && hasModified && !props.isValid;
     let redStar = '';
     let errorDiv = ''
-
+    let inputClasses = Style.input;
 
     if(props.isRequired){
 
@@ -18,12 +18,8 @@ function InputGroup(props){
 
     if(showError){
 
+        inputClasses = ' ' + Style.inputError;
         errorDiv = <div className={Style.errorDiv}>{props.message}</div>
-    }
-
-    const handleChange = e => {
-
-        props.handleChange(e.currentTarget.value);
     }
 
     const handleFocus = () => {
@@ -48,8 +44,10 @@ function InputGroup(props){
             </label>
 
             <input
-            className={Style.input} 
-            value={props.inputValue} 
+            type={props.type}
+            className={inputClasses} 
+            value={props.inputValue}
+            name={props.inputName}
             id={props.inputId} 
             required={props.isRequired}
             onChange={e => props.handleChange(e.currentTarget.value)}
@@ -62,9 +60,11 @@ function InputGroup(props){
 }
 
 InputGroup.defaultProps = {
+    type:'text',
     tagName: '',
     inputValue: '',
     isRequired: false,
+    inputName:'',
     inputId: '',
     message:'',
     isValid:true,

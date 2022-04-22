@@ -2,6 +2,7 @@ import { useState } from "react";
 import InputGroup from "../UI/form/InputGroup";
 import Style from './client.module.css';
 import {CLIENT_FORM_ACTION} from '../../reducers/client/ClientReducer';
+import { isOnlyEngNotEmpty } from "../../logic/validate/client validators/addClientValidator";
 
 function AddClientForm(props){
 
@@ -16,11 +17,11 @@ function AddClientForm(props){
             inputName={'fName'}
             inputValue={formState.fName.value}
             isRequired={formState.fName.isRequired}
-            message={'Required field'}
+            message={formState.fName.message}
             isValid={formState.fName.isValid}
             handleChange={value => {
 
-                const [isValid, message] = [true, ''] // function...
+                const [isValid, message] = isOnlyEngNotEmpty(value);
 
                 formDispatch({
                     type:CLIENT_FORM_ACTION.UPDATE_FIELD,
@@ -38,10 +39,26 @@ function AddClientForm(props){
             tagName={'Last Name'}
             inputName={'lName'}
             inputId={'lastName'}
-            inputValue={''}
+            inputValue={formState.lName.value}
             isRequired={true}
-            message={'Required field'}
-            isValid={false}/>           
+            message={formState.lName.message}
+            isValid={false}
+            handleChange={value => {
+
+                const [isValid, message] = [true, ''] // function...
+
+                formDispatch({
+                    type:CLIENT_FORM_ACTION.UPDATE_FIELD,
+                    payload:{
+                        field:'lName',
+                        value:value,
+                        isValid:isValid,
+                        message:message,
+                        isRequired:formState.lName.isRequired
+                    }
+                });
+            }}/>
+
             <button>Save Client</button>
         </div>
     );

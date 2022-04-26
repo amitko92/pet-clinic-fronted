@@ -1,17 +1,22 @@
 import React, { useContext } from 'react';
-import Style from './loginForm.module.css';
-import TextIput from '../UI/form/TextInput';
-import NumberInput from '../UI/form/NumberInput';
 import useLogin from '../../hooks/login/useLogin';
 import Alert from '../UI/Alerts/Alert';
 import { PageStateContext } from '../../contexts/PageStateContext';
 import LoadingSpan from '../UI/LoadingSpan/LoadingSpan';
-
+import InputGroup from '../UI/form/InputGroup';
 
 function LoginForm(props) {
     
     const {pageState} = useContext(PageStateContext);
     const { userName, setUserName, password, setPassword, pin, setPin, login} = useLogin();
+
+    let alert = '';
+
+    if(pageState.hasMessage){
+        alert = (<Alert 
+            status={pageState.messageStatus} 
+            alertMessage={pageState.message} />);
+    }
 
     function useHandleSubmit(event) {
         
@@ -20,19 +25,37 @@ function LoginForm(props) {
     }
 
     return (
-            <form onSubmit={useHandleSubmit}>
-                {pageState.hasMessage && <Alert 
-                                            status={pageState.messageStatus} 
-                                            alertMessage={pageState.message} />}
-                <TextIput name={'username'} id={'username'} 
-                tagName={'User Name'} value={userName} setValue={setUserName}/>
-                <TextIput name={'password'} id={'password'} 
-                tagName={'Password'} value={password} setValue={setPassword}/>
-                <NumberInput name={'pin'} id={'pin'} 
-                tagName={'Project Number'} value={pin} setValue={setPin}/>
-                <button type="submit" onClick={useHandleSubmit}>Login</button>
-                {pageState.isLoading && <LoadingSpan />}
-            </form>
+        <form onSubmit={useHandleSubmit}>
+            {alert}
+
+            <InputGroup 
+            name={'username'} 
+            inputId={'username'} 
+            tagName={'User Name'} 
+            inputValue={userName}
+            isRequired={true} 
+            handleChange={value => setUserName(value)}/>
+
+            <InputGroup 
+            name={'password'} 
+            inputId={'password'} 
+            tagName={'Password'}
+            inputValue={password}
+            isRequired={true}  
+            handleChange={value => setPassword(value)}/>
+
+            <InputGroup 
+            type={'number'} 
+            name={'pin'} 
+            inputId={'pin'} 
+            tagName={'Project Number'} 
+            inputValue={pin}
+            isRequired={true} 
+            handleChange={value => setPin(value)}/>
+            
+            <button className='btn btn-primary' type="submit">Login</button>
+            {pageState.isLoading && <LoadingSpan />}
+        </form>
     );
 }
 

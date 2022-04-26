@@ -2,7 +2,6 @@ import React, { useContext, useState } from 'react';
 import { Route, BrowserRouter, Routes } from "react-router-dom";
 import Style from './styles/app.module.css';
 import Dashboard from './pages/dashboard/Dashboard';
-import Sidebar from './components/sidebar/Sidebar';
 import Login from './pages/login/Login';
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
@@ -22,7 +21,7 @@ function App() {
     setIsShowSidebar(!isShowSidebar);
   }
 
-  let page = <div></div>; 
+  let app = ''; 
   let mainContent = <Dashboard />;
 
   mainContent = (
@@ -36,17 +35,14 @@ function App() {
     
   if(isLoggedIn){
 
-    page = (
+    app = (
       <div className={Style.pageContainer}>
         <div className={Style.header}>
           <Header chengeSidebarState={chengeSidebarState} />
         </div>
-        <div className={Style.mainContent}>
-          {isShowSidebar && <Sidebar />}
-          <Page>
-            {mainContent}
-          </Page>
-        </div>
+        <Page>
+          {mainContent}
+        </Page>
         <div className={Style.footer}>
           <Footer />
         </div>
@@ -54,7 +50,7 @@ function App() {
     );
   }else{
 
-    page = (
+    app = (
         <Login/>
       );
   }
@@ -62,7 +58,7 @@ function App() {
   return (
       <BrowserRouter>
         <ProjectDetailsProvider>
-          {page}
+          {app}
         </ProjectDetailsProvider>
       </BrowserRouter>
   );

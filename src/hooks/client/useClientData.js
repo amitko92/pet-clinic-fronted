@@ -13,14 +13,14 @@ export const useClientData = (clientId) => {
         isNewClient:false,
         hasModified: false,
         id: {value:clientId, isValid:false, message:'', isRequired:false},
-        fName: {value:'', isValid:false, message:'',isRequired:true},
-        lName: {value:'', isValid:false, message:'',isRequired:true},
-        datOfBirth: {value:'', isValid:false, message:'',isRequired:true},
-        registrationDate: {value:'', isValid:false, message:'',isRequired:true},
-        city: {value:'', isValid:false, message:'',isRequired:true},
-        street: {value:'', isValid:false, message:'',isRequired:true},
-        house: {value:'', isValid:false, message:'',isRequired:true},
-        apartment: {value:'', isValid:false, message:'',isRequired:true},
+        fName: {value:'', isValid:false, message:'field is required',isRequired:true},
+        lName: {value:'', isValid:false, message:'field is required',isRequired:true},
+        dateOfBirth: {value:'', isValid:false, message:'field is required',isRequired:true},
+        registrationDate: {value:'', isValid:false, message:'field is required',isRequired:true},
+        city: {value:'', isValid:false, message:'field is required',isRequired:true},
+        street: {value:'', isValid:false, message:'field is required',isRequired:true},
+        house: {value:'', isValid:false, message:'field is required',isRequired:true},
+        apartment: {value:'', isValid:false, message:'field is required',isRequired:true},
     });
 
     return {formState, formDispatch};

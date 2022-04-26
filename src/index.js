@@ -4,6 +4,7 @@ import App from './App';
 import './styles/main.css';
 import {LoginProvider} from './LoginContext';
 import { PageStateProvider} from './contexts/PageStateContext';
+import 'bootstrap/dist/css/bootstrap.css';
 
 ReactDOM.render(
     <React.StrictMode>

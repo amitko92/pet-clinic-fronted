@@ -1,0 +1,12 @@
+.btn{
+
+    width: fit-content;
+    padding: 0.3rem;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+}
+
+.greenBtn{
+    border: rgb(6, 49, 6) 1px solid;
+    background-color: rgb(18, 235, 47);
+}

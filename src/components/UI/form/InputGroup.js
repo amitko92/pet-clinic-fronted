@@ -9,17 +9,17 @@ function InputGroup(props){
     let showError = !isFocus && hasModified && !props.isValid;
     let redStar = '';
     let errorDiv = ''
-    let inputClasses = Style.input;
+    let classes = 'form-control';
 
     if(props.isRequired){
 
         redStar = <RedStar />
     }
-
+  
     if(showError){
 
-        inputClasses = ' ' + Style.inputError;
-        errorDiv = <div className={Style.errorDiv}>{props.message}</div>
+        classes += ' is-invalid';
+        errorDiv = <div className={'invalid-feedback'}>{props.message}</div>
     }
 
     const handleFocus = () => {
@@ -27,35 +27,35 @@ function InputGroup(props){
         setIsFocus(true);
 
         if(hasModified === false){
-
+            
             setHasModified(true);
         }
     }
 
     return (
-        <div className={Style.inputGroup}>
+        <>
 
-            {redStar}
+        {redStar}
 
-            <label
-            className={Style.label}  
-            htmlFor={props.inputId}>
-                {props.tagName}
-            </label>
+        <label
+        className={'form-label'}  
+        htmlFor={props.inputId}>
+            {props.tagName}
+        </label>
 
-            <input
-            type={props.type}
-            className={inputClasses} 
-            value={props.inputValue}
-            name={props.inputName}
-            id={props.inputId} 
-            required={props.isRequired}
-            onChange={e => props.handleChange(e.currentTarget.value)}
-            onFocus={handleFocus}
-            onBlur={() => setIsFocus(false)}/>
+        <input
+        className={classes}
+        type={props.type}
+        value={props.inputValue}
+        name={props.inputName}
+        id={props.inputId} 
+        required={props.isRequired}
+        onChange={e => props.handleChange(e.currentTarget.value)}
+        onFocus={handleFocus}
+        onBlur={() => setIsFocus(false)}/>
 
-            {errorDiv}
-        </div>
+        {errorDiv}
+        </>
     );
 }
 

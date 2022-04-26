@@ -1,14 +1,14 @@
 import React, { useContext } from 'react';
 import Style from './page.module.css';
 import { PageStateContext } from '../../../contexts/PageStateContext';
-import Alert from '../Alerts/Alert';
 
 const Page = (props) => {
 
     const {pageState} = useContext(PageStateContext);
-    
+    const classes = 'container ' + Style.page;
+
     return (
-    <div className={Style.page}>
+    <div className={classes}>
         {props.children}
     </div>
     );

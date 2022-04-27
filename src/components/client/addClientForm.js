@@ -29,100 +29,107 @@ function AddClientForm(props){
     }
     
     const handleSubmit = e => {
-        e.preventDefualt();
+        
+        e.preventDefault();
+        addClient()
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div className="row">
-                <div className="col-4">
+    <form onSubmit={handleSubmit}>
+        <div className="card">
+            <div className="card-body">
+                <div className="row">
+                    <div className="col-4">
+                        <InputGroupRequired 
+                        tagName={'First Name'}
+                        inputName={'fName'}
+                        formData={formState.fName}
+                        handleChange={value => {
+                            handleChange(isOnlyEngNotEmpty,'fName', value);
+                        }}/>
+                    </div>
+                    <div className="col-4">
+                        <InputGroupRequired 
+                        tagName={'Last Name'}
+                        inputName={'lName'}
+                        formData={formState.lName}
+                        handleChange={value => {
+                            handleChange(isOnlyEngNotEmpty,'lName', value);
+                        }}/>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-4">
+    
+                        <InputGroupRequired 
+                        tagName={'Date Of Birth'}
+                        inputName={'dateOfBirth'}
+                        formData={formState.dateOfBirth}
+                        type={'date'}
+                        handleChange={value => {
+                            handleChange(isNotEmpty,'dateOfBirth', value);
+                        }}/>
+                    </div>
+                    <div className="col-4">
+                        <InputGroupRequired 
+                        tagName={'Registration Date'}
+                        inputName={'registrationDate'}
+                        formData={formState.registrationDate}
+                        type={'date'}
+                        readOnly={true}
+                        handleChange={value => {
+                            handleChange(isNotEmpty,'registrationDate', value);
+                        }}/>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-3">
+                        <InputGroupRequired 
+                        tagName={'City'}
+                        inputName={'city'}
+                        formData={formState.city}
+                        handleChange={value => {
+                            handleChange(isOnlyEngNotEmpty,'city', value);
+                        }}/>
+                    </div>
+                    <div className="col-3">
+                        <InputGroupRequired 
+                        tagName={'Street'}
+                        inputName={'street'}
+                        formData={formState.street}
+                        handleChange={value => {
+                            handleChange(isOnlyEngNotEmpty,'street', value);
+                        }}/>
+                    </div>
+                    <div className="col-2">
                     <InputGroupRequired 
-                    tagName={'First Name'}
-                    inputName={'fName'}
-                    formData={formState.fName}
-                    handleChange={value => {
-                        handleChange(isOnlyEngNotEmpty,'fName', value);
-                    }}/>
-                </div>
-                <div className="col-4">
+                        tagName={'House'}
+                        inputName={'house'}
+                        formData={formState.house}
+                        handleChange={value => {
+                            handleChange(isNotEmpty,'house', value);
+                        }}/>
+                    </div>
+                    <div className="col-2">
                     <InputGroupRequired 
-                    tagName={'Last Name'}
-                    inputName={'lName'}
-                    formData={formState.lName}
-                    handleChange={value => {
-                        handleChange(isOnlyEngNotEmpty,'lName', value);
-                    }}/>
+                        tagName={'Apartment'}
+                        inputName={'apartment'}
+                        formData={formState.apartment}
+                        handleChange={value => {
+                            handleChange(isNotEmpty,'apartment', value);
+                        }}/>
+                    </div>
                 </div>
-            </div>
-            <div className="row">
-                <div className="col-4">
- 
-                    <InputGroupRequired 
-                    tagName={'Date Of Birth'}
-                    inputName={'dateOfBirth'}
-                    formData={formState.dateOfBirth}
-                    type={'date'}
-                    handleChange={value => {
-                        handleChange(isNotEmpty,'dateOfBirth', value);
-                    }}/>
+                <div className="row">
+                    <div className="col-4">
+                    
+                    </div>
                 </div>
-                <div className="col-4">
-                    <InputGroupRequired 
-                    tagName={'Registration Date'}
-                    inputName={'registrationDate'}
-                    formData={formState.registrationDate}
-                    type={'date'}
-                    handleChange={value => {
-                        handleChange(isNotEmpty,'registrationDate', value);
-                    }}/>
-                </div>
-            </div>
-            <div className="row">
-                <div className="col-3">
-                    <InputGroupRequired 
-                    tagName={'City'}
-                    inputName={'city'}
-                    formData={formState.city}
-                    handleChange={value => {
-                        handleChange(isOnlyEngNotEmpty,'city', value);
-                    }}/>
-                </div>
-                <div className="col-3">
-                    <InputGroupRequired 
-                    tagName={'Street'}
-                    inputName={'street'}
-                    formData={formState.street}
-                    handleChange={value => {
-                        handleChange(isOnlyEngNotEmpty,'street', value);
-                    }}/>
-                </div>
-                <div className="col-2">
-                <InputGroupRequired 
-                    tagName={'House'}
-                    inputName={'house'}
-                    formData={formState.house}
-                    handleChange={value => {
-                        handleChange(isNotEmpty,'house', value);
-                    }}/>
-                </div>
-                <div className="col-2">
-                <InputGroupRequired 
-                    tagName={'Apartment'}
-                    inputName={'apartment'}
-                    formData={formState.apartment}
-                    handleChange={value => {
-                        handleChange(isNotEmpty,'apartment', value);
-                    }}/>
-                </div>
-            </div>
-            <div className="row">
-                <div className="col-4">
-                
-                </div>
-            </div>
 
-            <button type="submit" className="btn btn-primary">Save Client</button>
-        </form>
+                <button type="submit" className="btn btn-primary">Save Client</button>
+            </div>
+        </div>
+    </form>
     );
 }
 

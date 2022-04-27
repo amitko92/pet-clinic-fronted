@@ -50,6 +50,7 @@ function InputGroup(props){
         name={props.inputName}
         id={props.inputId} 
         required={props.isRequired}
+        readOnly={props.readOnly}
         onChange={e => props.handleChange(e.currentTarget.value)}
         onFocus={handleFocus}
         onBlur={() => setIsFocus(false)}/>
@@ -68,6 +69,7 @@ InputGroup.defaultProps = {
     inputId: '',
     message:'',
     isValid:true,
+    readOnly:false,
     handleChange: () => console.log("NO handleChange FOR INPUT")
 }
 

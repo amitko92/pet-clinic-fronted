@@ -1,19 +1,34 @@
 import Style from './alerts.module.css';
 
-const Alert = (props) =>{
+const Alert = ({status, message}) =>{
 
-    let calsses = Style.message;
+    let calsses = 'alert';
 
-    if(props.status === 'error'){
-        calsses += ' ' + Style.errorMessage;
-    }else if(props.status === 'success'){
+    if(status === 'primary'){
 
-        calsses += ' ' + Style.successMessage;
+        calsses += ' alert-primary';
+    }else if(status === 'success'){
+
+        calsses += ' alert-success';
+    }else if(status === 'secondary'){
+
+        calsses += ' alert-secondary';
+    }else if(status === 'danger' || status === 'error'){
+
+        calsses += ' alert-danger';
+    }else if(status === 'info'){
+
+        calsses += ' alert-info';
     }
+/*
+<div class="alert alert-warning" role="alert">
+<div class="alert alert-light" role="alert">
+<div class="alert alert-dark" role="alert">
+*/
 
     return (
         <div className={calsses}>
-            {props.message}
+            {message}
         </div>
     );
 }

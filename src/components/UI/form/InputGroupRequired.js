@@ -1,6 +1,6 @@
 import InputGroup from "./InputGroup";
 
-function InputGroupRequired({tagName, inputName, type, formData, handleChange}){
+function InputGroupRequired({tagName, inputName, type, formData, handleChange, readOnly}){
 
     return (
         <InputGroup 
@@ -12,6 +12,7 @@ function InputGroupRequired({tagName, inputName, type, formData, handleChange}){
         isRequired={formData.isRequired}
         message={formData.message}
         isValid={formData.isValid}
+        readOnly={readOnly}
         handleChange={handleChange}/>
     );
 }
@@ -21,6 +22,7 @@ InputGroupRequired.defaultProps = {
     tagName: '',
     inputId: '',
     inputName:'',
+    readOnly:false,
     formData:{
         inputValue: '',
         isRequired: false,

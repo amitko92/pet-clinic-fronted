@@ -53,22 +53,19 @@ export const useUpdateClient = (formState) => {
     }
 
     const addClient = () => {
-        const url = '/owner';
+        const url = '/addOwner';
  
         let formData = new FormData(); // Currently empty
 
         for (let x in formState) {
-            console.log(x + ": "+ formState[x])
+            
+            if(x === 'id' || x === 'isNewClient' || x === 'hasModified'){
+                continue;
+            }
+
+            formData.append(x, formState[x].value);
          }
-/*
-        formData.append('', formState.fName.);
-        formData.append('', );
-        formData.append('', );
-        formData.append('', );
-        formData.append('', );
-        formData.append('', );
-        formData.append('', );
-*/
+
         axios.post(url, formData)
         .then(response => {
             

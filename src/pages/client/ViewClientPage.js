@@ -25,6 +25,7 @@ const ViewClientPage = () => {
     }, []);
 
     if(pageState.hasMessage){
+        console.log('pageState.hasMessage ' + pageState.hasMessage);
         alert = (
             <Alert 
             status={pageState.messageStatus} 
@@ -37,7 +38,6 @@ const ViewClientPage = () => {
             {alert}
             <h1>Client Page</h1>
             <AddClientForm formState={formState} formDispatch={formDispatch}/>
-            <p>{JSON.stringify(formState)}</p>
         </>
     );
 }

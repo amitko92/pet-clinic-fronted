@@ -9,6 +9,7 @@ const Alert = ({status, message}) =>{
         calsses += ' alert-primary';
     }else if(status === 'success'){
 
+        
         calsses += ' alert-success';
     }else if(status === 'secondary'){
 
